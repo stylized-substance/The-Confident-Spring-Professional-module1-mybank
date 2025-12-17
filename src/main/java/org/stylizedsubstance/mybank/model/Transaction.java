@@ -1,4 +1,4 @@
-package org.stylizedsubstance.model;
+package org.stylizedsubstance.mybank.model;
 
 import java.util.UUID;
 
