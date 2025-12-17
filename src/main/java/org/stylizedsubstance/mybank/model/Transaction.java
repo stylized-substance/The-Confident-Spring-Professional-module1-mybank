@@ -2,18 +2,18 @@ package org.stylizedsubstance.mybank.model;
 
 import java.util.UUID;
 
+import org.stylizedsubstance.mybank.context.Application;
+
 public class Transaction {
     private String id;
     private int amount; // Monetary amount in cents
-    /*
-        TODO finish timestamp
-        timestamp
-    */
+    private String timestamp;
     private String reference;
 
     public Transaction(int amount, String reference) {
         this.id = UUID.randomUUID().toString();
         this.amount = amount;
+        this.timestamp = Application.dateTimeUtil.createTimeStamp();
         this.reference = reference;
     }
 
@@ -31,6 +31,14 @@ public class Transaction {
 
     public void setAmount(int amount) {
         this.amount = amount;
+    }
+
+    public String getTimeStamp() {
+        return timestamp;
+    }
+
+    public void setTimeStamp(String timestamp) {
+        this.timestamp = timestamp;
     }
 
     public String getReference() {
