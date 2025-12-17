@@ -18,4 +18,16 @@ public class MyBankServlet extends HttpServlet {
             response.getWriter().print(Application.objectMapper.writeValueAsString(transactions));
         }
     }
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        if (request.getRequestURI().equalsIgnoreCase("/transactions")) {
+            int amount = Integer.parseInt(request.getParameter("amount"));
+            String reference = request.getParameter("reference");
+            Transaction transaction = Application.transactionService.create(amount, reference);
+            response.setContentType("application/json; charset=UTF-8");
+            response.getWriter().print(Application.objectMapper.writeValueAsString(transaction));
+        } else {
+            response.setStatus(HttpServletResponse.SC_NOT_FOUND);
+        }
+    }
 }
